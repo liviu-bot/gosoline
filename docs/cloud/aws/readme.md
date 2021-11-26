@@ -1,5 +1,8 @@
 [embedmd]:# (../../pkg/apiserver/server.go /func NewWithInterfaces/ /\n}/)
 
+[structmd]:# (pkg/apiserver/server.go Settings HandlerMetadata)
+[structmd end]:#
+
 ## Configuration
 The AWS SDK v2 based services use the following default settings for region 
 and endpoint, meaning you get those values for every requested client if you 
