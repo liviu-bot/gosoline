@@ -1,3 +1,63 @@
+[embedmd]:# (../../../pkg/apiserver/server.go /func NewWithInterfaces/ /\n}/)
+```go
+func NewWithInterfaces(logger log.Logger, router *gin.Engine, tracer tracing.Tracer, s *Settings) (*ApiServer, error) {
+	server := &http.Server{
+		Addr:         ":" + s.Port,
+		Handler:      tracer.HttpHandler(router),
+		ReadTimeout:  s.Timeout.Read,
+		WriteTimeout: s.Timeout.Write,
+		IdleTimeout:  s.Timeout.Idle,
+	}
+
+	var err error
+	var listener net.Listener
+	address := server.Addr
+
+	if address == "" {
+		address = ":http"
+	}
+
+	// open a port for the server already in this step so we can already start accepting connections
+	// when this module is later run (see also issue #201)
+	if listener, err = net.Listen("tcp", address); err != nil {
+		return nil, err
+	}
+
+	logger.Info("serving api requests on address %s", listener.Addr().String())
+
+	apiServer := &ApiServer{
+		logger:   logger,
+		server:   server,
+		listener: listener,
+	}
+
+	return apiServer, nil
+}
+```
+
+[structmd]:# (pkg/apiserver/server.go Settings HandlerMetadata)
+**HandlerMetadata**
+
+
+
+| field       | type     | default     | description     |
+| :------------- | :----------: | :----------: | -----------: |
+| Method | string |  |  |
+| Path | string |  |  |
+
+**Settings**
+
+Settings stores the settings for an apiserver.
+
+| field       | type     | default     | description     |
+| :------------- | :----------: | :----------: | -----------: |
+| Port | string | 8080 | Port stores the port where this app will listen on. |
+| Mode | string | release |  |
+| Compression | CompressionSettings |  |  |
+| Timeout | TimeoutSettings |  |  |
+
+[structmd end]:#
+
 ## Configuration
 The AWS SDK v2 based services use the following default settings for region 
 and endpoint, meaning you get those values for every requested client if you 
