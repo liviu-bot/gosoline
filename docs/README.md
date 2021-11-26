@@ -45,7 +45,7 @@ func Cors(config cfg.Config) gin.HandlerFunc {
 Start of structmd demo:
 
 [structmd]:# (pkg/apiserver/server.go Settings TimeoutSettings HandlerMetadata)
-##### Struct **HandlerMetadata**
+**HandlerMetadata**
 
 
 
@@ -54,7 +54,7 @@ Start of structmd demo:
 | Method | string |  |  |
 | Path | string |  |  |
 
-##### Struct **Settings**
+**Settings**
 
 Settings stores the settings for an apiserver.
 
@@ -65,7 +65,7 @@ Settings stores the settings for an apiserver.
 | Compression | CompressionSettings |  |  |
 | Timeout | TimeoutSettings |  |  |
 
-##### Struct **TimeoutSettings**
+**TimeoutSettings**
 
 
 

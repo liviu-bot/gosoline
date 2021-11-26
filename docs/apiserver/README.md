@@ -49,7 +49,7 @@ func NewWithInterfaces(logger log.Logger, router *gin.Engine, tracer tracing.Tra
 * the configuration for an apiserver object looks like this:
 
 [structmd]:# (pkg/apiserver/server.go Settings)
-##### Struct **Settings**
+**Settings**
 
 Settings stores the settings for an apiserver.
 

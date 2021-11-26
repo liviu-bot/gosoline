@@ -220,7 +220,7 @@ results in
 ```
 
 [structmd]:# (pkg/apiserver/server.go Settings HandlerMetadata)
-##### Struct **HandlerMetadata**
+**HandlerMetadata**
 
 
 
@@ -229,7 +229,7 @@ results in
 | Method | string |  |  |
 | Path | string |  |  |
 
-##### Struct **Settings**
+**Settings**
 
 Settings stores the settings for an apiserver.
 
